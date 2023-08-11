@@ -76,5 +76,15 @@
         "prefix": "expr",
         "body": "expr ${0:1 + 1}",
         "description": "Calculate numbers with Bash."
+    },
+    "db": {
+        "prefix": "db",
+        "body": "#!/bin/bash -x\ntrap 'read -p \"\\$BASH_COMMAND\"' DEBUG\nset -o functrace\n\n${0}",
+        "description": "Debug options for shell script"
+    },
+    "dblg": {
+        "prefix": "dblg",
+        "body": "DEBUG_LOG() {\n\t[ ! -f \"\\$_DEBUG_LOGFILE_\" -a \\$# -ne 0 ] && return 1\n\n\tif [ ! -f \"\\$_DEBUG_LOGFILE_\" -a \\$# -eq 0 ]; then\n\t\tcat <&0\n\t\treturn 1\n\tfi\n\tif [ \\$# -eq 0 ]; then {\n\t\techo \"--- `date '+%Y/%m/%d %H:%M:%S'` --------------------------------\"\n\t\tcat <&0\n\t\tprintf \"\\n\\n\"\n\t\t# ロギング用に付加したものは削除しておく\n\t} | tee -a \\$_DEBUG_LOGFILE_ | sed -e '1d' | head -n -2\n\telse {\n\t\techo \"--- `date '+%Y/%m/%d %H:%M:%S'` --------------------------------\"\n\t\tprintf \"\\$*\\n\\n\"\n\t} >>\\$_DEBUG_LOGFILE_\n\tfi\n\n\treturn 0\n}\n${0}",
+        "description": "Debug log function for shell script"
     }
 }
