@@ -1,22 +1,4 @@
 {
-    "statefulComponent": {
-        "prefix": "rnc",
-        "body": [
-            "import React, { Component } from 'react';",
-            "",
-            "import { View } from 'react-native';",
-            "",
-            "// import { Container } from './styles';",
-            "",
-            "export default class ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} extends Component {",
-            "  render() {",
-            "    return <View />;",
-            "  }",
-            "}",
-            ""
-        ],
-        "description": "Create React Native Stateful Component"
-    },
     "statelessComponent": {
         "prefix": "rnsc",
         "body": [
